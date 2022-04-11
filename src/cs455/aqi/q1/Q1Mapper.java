@@ -11,6 +11,12 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
+/*
+    Mapper: Read each line of JSON data
+    Grab Epoch time and AQI score
+    Returns: 
+*/ 
+
 
 public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
