@@ -12,7 +12,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
 public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
-
+    
+    @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
 
 
