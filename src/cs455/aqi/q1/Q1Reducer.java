@@ -24,11 +24,12 @@ public class Q1Reducer extends Reducer<Text, NullWritable, IntWritable, NullWrit
         // checks if data object has certain day of week (key)
             // If it does, add to that and get average
         // basically, check data object and update it
+
+
     }
 
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException{
-        // go through data object
         // Context.write
     
 
