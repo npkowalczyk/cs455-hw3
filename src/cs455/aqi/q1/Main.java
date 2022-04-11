@@ -28,8 +28,8 @@ public class Main{
             job.setMapOutputKeyClass(Text.class);
             job.setMapOutputValueClass(IntWritable.class);
             // Outputs from the Reducer
-            job.setOutputKeyClass(Text.class)
-            job.setOutputKeyClass(NullWritable.class)
+            job.setOutputKeyClass(Text.class);
+            job.setOutputKeyClass(NullWritable.class);
 
             job.setNumReduceTasks(1); 
             System.out.println(args[0]);
