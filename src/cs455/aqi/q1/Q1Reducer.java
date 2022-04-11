@@ -11,6 +11,14 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
+/*
+    Receives: 
+    Sums up AQI scores for each key (day of week)
+    Finds mean by dividing sum by number of entries for that day
+    Returns means for days of week as <key, mean> 
+*/
+
+
 public class Q1Reducer extends Reducer<Text, NullWritable, IntWritable, NullWritable> {
     @Override 
     public void setup(Context context) throws IOException, InterruptedException{
