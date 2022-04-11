@@ -39,7 +39,7 @@ public class Q1Reducer extends Reducer<Text, NullWritable, IntWritable, NullWrit
 
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException{
-        // Context.write
+        // context.write
     
 
     }
