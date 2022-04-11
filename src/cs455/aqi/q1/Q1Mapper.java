@@ -15,14 +15,21 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
     Mapper: Read each line of JSON data
     Grab Epoch time and AQI score
     Returns: 
+
+    //convert epoch time to timestamp into String(text obj)
+    //key: day of week, AQI score
+    //return 7 key:val pairs
 */ 
 
 
 public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
+
+    private Text weekDay = new Text();
+
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
-
+        
 
     }
 }
