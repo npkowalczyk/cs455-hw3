@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /*
-    Receives: <Day, AQI Score>
+    Receives: <Day, AQI Scores>
     Sums up AQI scores for each key (day of week)
     Finds mean by dividing sum by number of entries for that day
     Returns means for days of week as <Day, mean> 
