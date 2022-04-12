@@ -21,11 +21,11 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
 public class Q1Reducer extends Reducer<Text, IntWritable, Text, IntWritable> {
-    @Override 
-    public void setup(Context context) throws IOException, InterruptedException{
-        // creates data object that holds each day (key, value)
+    // @Override 
+    // public void setup(Context context) throws IOException, InterruptedException{
+    //     // creates data object that holds each day (key, value)
 
-    }
+    // }
 
     @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException{
@@ -52,10 +52,10 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, IntWritable> {
 
     }
 
-    @Override
-    public void cleanup(Context context) throws IOException, InterruptedException{
-        // context.write
+    // @Override
+    // public void cleanup(Context context) throws IOException, InterruptedException{
+    //     // context.write
     
 
-    }
+    // }
 }
