@@ -7,6 +7,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
+import java.util.*;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -19,11 +20,11 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
-    private TreeMap<Long, String> treeMap;
+    private TreeMap<Integer, String> treeMap;
  
     @Override
     public void setup(Context context) throws IOException, InterruptedException{
-        treeMap = new TreeMap<Int, String>();
+        treeMap = new TreeMap<Integer, String>();
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
         Date date = new Date(epoch);
         int day = date.getDay();
-        String dayOfWeek;
+        String dayOfWeek = "";
         switch(day){
             case 0:
                 dayOfWeek = "Sunday";
@@ -60,7 +61,7 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException {
         // context write to reducer only once the mapper is done
-        for (Map.Entry<Int, String> entry : treeMap.entrySet()){
+        for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
             int aqi = entry.getKey();
             String day = entry.getValue();
             context.write(new Text(day), new IntWritable(aqi));
