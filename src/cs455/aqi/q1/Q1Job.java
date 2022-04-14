@@ -13,12 +13,12 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import java.io.IOException;
 
-public class Main{
+public class Q1Job{
     public static void main(String[] args) throws Exception {
         Configuration conf = new Configuration();
         Job job = Job.getInstance(conf, "q1");
         // current class
-        job.setJarByClass(Main.class);
+        job.setJarByClass(Q1Job.class);
         // Mapper
         job.setMapperClass(Q1Mapper.class);
         // Combiner

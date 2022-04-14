@@ -37,6 +37,7 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
         Date date = new Date(epoch);
         int day = date.getDay();
+        System.out.println(day);
         String dayOfWeek = "";
         switch(day){
             case 0:
