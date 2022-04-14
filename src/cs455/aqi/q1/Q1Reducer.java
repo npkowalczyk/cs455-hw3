@@ -35,11 +35,12 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         long sum = 0;
         // keeps track of number of items for key
         int num = 0;
+        long avg = 0;
         for(IntWritable val : values){
             num += 1;
             sum += val.get();
         }
-        long avg = sum / num;
+        avg = sum / num;
         // add average for individual day to TreeMap
         DaysAvg.put(avg, key.toString());
         System.out.println(avg + " " + key.toString());

@@ -55,7 +55,8 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
             case 6:
                 dayOfWeek = "Saturday";
         }
-
+        System.out.println(dayOfWeek);
+        System.out.println(aqi + " " + dayOfWeek);
         treeMap.put(aqi, dayOfWeek);
     }
 
