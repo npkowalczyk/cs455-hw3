@@ -31,7 +31,7 @@ public class Q2Job{
         // Outputs from the Reducer
         job.setOutputKeyClass(Text.class);
         job.setOutputKeyClass(LongWritable.class);
-
+        // set number of tasks
         job.setNumReduceTasks(1); 
         System.out.println(args[0]);
         FileInputFormat.addInputPath(job, new Path(args[1]));
