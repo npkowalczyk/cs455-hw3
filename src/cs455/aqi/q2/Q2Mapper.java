@@ -1,4 +1,4 @@
-package cs455.aqi.q1;
+package cs455.aqi.q2;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -13,12 +13,12 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /*
-    Mapper: Read each line of JSON data
+    Mapper: Read each line of CSV data
     Grab Epoch time and AQI score
-    Returns: <Day, AQI> 
+    Returns: <Month, AQI>
 */ 
 
-public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
+public class Q2Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
     private TreeMap<Integer, String> treeMap;
  
@@ -36,28 +36,38 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
         long epoch = Long.parseLong(lineSplit[2]);
 
         Date date = new Date(epoch);
-        int day = date.getDay();
-        System.out.println(day);
-        String dayOfWeek = "";
+        int mon = date.getMonth();
+        // System.out.println(mon);
+        String months = "";
         switch(day){
             case 0:
-                dayOfWeek = "Sunday";
+                months = "January";
             case 1:
-                dayOfWeek = "Monday";
+                months = "February";
             case 2:
-                dayOfWeek = "Tuesday";
+                months = "March";
             case 3:
-                dayOfWeek = "Wednesday";
+                months = "April";
             case 4:
-                dayOfWeek = "Thursday";
+                months = "May";
             case 5:
-                dayOfWeek = "Friday";
+                months = "June";
             case 6:
-                dayOfWeek = "Saturday";
+                months = "July";
+            case 7:
+                months = "August";
+            case 8:
+                months = "September";
+            case 9:
+                months = "October";
+            case 10:
+                months = "November";
+            case 11:
+                months = "December";
         }
-        System.out.println(dayOfWeek);
-        System.out.println(aqi + " " + dayOfWeek);
-        treeMap.put(aqi, dayOfWeek);
+        // System.out.println(months);
+        // System.out.println(aqi + " " + months);
+        treeMap.put(aqi, months);
     }
 
     @Override
@@ -65,8 +75,8 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
         // context write to reducer only once the mapper is done
         for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
             int aqi = entry.getKey();
-            String day = entry.getValue();
-            context.write(new Text(day), new IntWritable(aqi));
+            String month = entry.getValue();
+            context.write(new Text(month), new IntWritable(aqi));
         }
     }
 
