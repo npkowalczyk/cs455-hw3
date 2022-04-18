@@ -37,26 +37,30 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
         Date date = new Date(epoch);
         int day = date.getDay();
-        System.out.println(day);
         String dayOfWeek = "";
         switch(day){
             case 0:
                 dayOfWeek = "Sunday";
+                break;
             case 1:
                 dayOfWeek = "Monday";
+                break;
             case 2:
                 dayOfWeek = "Tuesday";
+                break;
             case 3:
                 dayOfWeek = "Wednesday";
+                break;
             case 4:
                 dayOfWeek = "Thursday";
+                break;
             case 5:
                 dayOfWeek = "Friday";
+                break;
             case 6:
                 dayOfWeek = "Saturday";
+                break;
         }
-        System.out.println(dayOfWeek);
-        System.out.println(aqi + " " + dayOfWeek);
         treeMap.put(aqi, dayOfWeek);
     }
 

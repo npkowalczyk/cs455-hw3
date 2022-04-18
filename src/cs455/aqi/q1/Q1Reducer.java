@@ -43,7 +43,6 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         avg = sum / num;
         // add average for individual day to TreeMap
         DaysAvg.put(avg, key.toString());
-        System.out.println(avg + " " + key.toString());
     }
 
     @Override
