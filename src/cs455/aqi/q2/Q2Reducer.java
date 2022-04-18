@@ -1,4 +1,4 @@
-package cs455.aqi.q1;
+package cs455.aqi.q2;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -14,21 +14,19 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /*
-    Receives: <Day, AQI Scores>
-    Sums up AQI scores for each key (day of week)
-    Finds mean by dividing sum by number of entries for that day
-    Returns means for days of week as <Day, mean> 
+    Receives: <Month, AQI Scores>
+    Sums up AQI scores for each key (month)
+    Finds mean by dividing sum by number of entries for that month
+    Returns means for month as <Month, mean> 
 */
 
-public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
-    private TreeMap<Long, String> DaysAvg;
-    private TreeMap<Long, String> finalOutput;
+public class Q2Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
+    private TreeMap<Long, String> MonthAvg;
 
     @Override 
     public void setup(Context context) throws IOException, InterruptedException{
         // creates data object that holds each day (key, value)
-        DaysAvg = new TreeMap<Long, String>();
-        finalOutput = new TreeMap<Long, String>();
+        MonthAvg = new TreeMap<Long, String>();
     }
 
     @Override
@@ -44,21 +42,17 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         }
         avg = sum / num;
         // add average for individual day to TreeMap
-        DaysAvg.put(avg, key.toString());
-
-        // output best and worst AQI
-        finalOutput.put(DaysAvg.lastEntry());
-        finalOutput.put(DaysAvg.firstEntry());
-
+        MonthAvg.put(avg, key.toString());
+        System.out.println(avg + " " + key.toString());
     }
 
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException{
         // context.write
-        for (Map.Entry<Long, String> entry : finalOutput.entrySet()){
+        for (Map.Entry<Long, String> entry : DaysAvg.entrySet()){
             long avg = entry.getKey();
-            String day = entry.getValue();
-            context.write(new Text(day), new LongWritable(avg));
+            String month = entry.getValue();
+            context.write(new Text(month), new LongWritable(avg));
         }
     }
 }
