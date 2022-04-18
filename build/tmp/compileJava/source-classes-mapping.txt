@@ -1,4 +1,2 @@
-Main.java
- Main
- Main$IntSumReducer
- Main$TokenizerMapper
+cs455/aqi/q1/Q1Mapper.java
+ cs455.aqi.q1.Q1Mapper
