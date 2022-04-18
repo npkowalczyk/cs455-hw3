@@ -29,35 +29,37 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
-        String input = value.toString();
-        String[] lineSplit = input.split(",");
+        // String input = value.toString();
+        String[] lineSplit = value.toString().split(",");
         String countyCode = lineSplit[0];
         int aqi = Integer.parseInt(lineSplit[1]);
         long epoch = Long.parseLong(lineSplit[2]);
 
         Date date = new Date(epoch);
-        int day = date.getDay();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
         String dayOfWeek = "";
         switch(day){
-            case 0:
+            case 1:
                 dayOfWeek = "Sunday";
                 break;
-            case 1:
+            case 2:
                 dayOfWeek = "Monday";
                 break;
-            case 2:
+            case 3:
                 dayOfWeek = "Tuesday";
                 break;
-            case 3:
+            case 4:
                 dayOfWeek = "Wednesday";
                 break;
-            case 4:
+            case 5:
                 dayOfWeek = "Thursday";
                 break;
-            case 5:
+            case 6:
                 dayOfWeek = "Friday";
                 break;
-            case 6:
+            case 7:
                 dayOfWeek = "Saturday";
                 break;
         }
