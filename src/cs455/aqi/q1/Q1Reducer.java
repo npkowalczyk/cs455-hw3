@@ -22,11 +22,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
     private TreeMap<Long, String> DaysAvg;
+    private TreeMap<Long, String> finalOutput;
 
     @Override 
     public void setup(Context context) throws IOException, InterruptedException{
         // creates data object that holds each day (key, value)
         DaysAvg = new TreeMap<Long, String>();
+        finalOutput = new TreeMap<Long, String>();
     }
 
     @Override
@@ -43,12 +45,17 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         avg = sum / num;
         // add average for individual day to TreeMap
         DaysAvg.put(avg, key.toString());
+
+        // output best and worst AQI
+        finalOutput.put(DaysAvg.lastEntry());
+        finalOutput.put(DaysAvg.firstEntry());
+
     }
 
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException{
         // context.write
-        for (Map.Entry<Long, String> entry : DaysAvg.entrySet()){
+        for (Map.Entry<Long, String> entry : finalOutput.entrySet()){
             long avg = entry.getKey();
             String day = entry.getValue();
             context.write(new Text(day), new LongWritable(avg));

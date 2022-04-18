@@ -37,36 +37,45 @@ public class Q2Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
         Date date = new Date(epoch);
         int mon = date.getMonth();
-        // System.out.println(mon);
         String months = "";
         switch(day){
             case 0:
                 months = "January";
+                break;
             case 1:
                 months = "February";
+                break;
             case 2:
                 months = "March";
+                break;
             case 3:
                 months = "April";
+                break;
             case 4:
                 months = "May";
+                break;
             case 5:
                 months = "June";
+                break;
             case 6:
                 months = "July";
+                break;
             case 7:
                 months = "August";
+                break;
             case 8:
                 months = "September";
+                break;
             case 9:
                 months = "October";
+                break;
             case 10:
                 months = "November";
+                break;
             case 11:
                 months = "December";
+                break;
         }
-        // System.out.println(months);
-        // System.out.println(aqi + " " + months);
         treeMap.put(aqi, months);
     }
 
