@@ -52,7 +52,7 @@ public class Q2Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException{
         // context.write
-        for (Map.Entry<Long, String> entry : MonthAvg.entrySet()){
+        for (Map.Entry<Long, String> entry : finalOutput.entrySet()){
             long avg = entry.getKey();
             String month = entry.getValue();
             context.write(new Text(month), new LongWritable(avg));
