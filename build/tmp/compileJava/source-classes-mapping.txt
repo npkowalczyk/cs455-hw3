@@ -1,2 +1,2 @@
-cs455/aqi/q1/Q1Mapper.java
- cs455.aqi.q1.Q1Mapper
+cs455/aqi/q2/Q2Job.java
+ cs455.aqi.q2.Q2Job

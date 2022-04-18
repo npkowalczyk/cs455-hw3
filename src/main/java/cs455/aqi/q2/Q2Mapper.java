@@ -38,7 +38,7 @@ public class Q2Mapper extends Mapper<Object, Text, Text, IntWritable> {
         Date date = new Date(epoch);
         int mon = date.getMonth();
         String months = "";
-        switch(day){
+        switch(mon){
             case 0:
                 months = "January";
                 break;

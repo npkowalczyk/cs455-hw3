@@ -47,8 +47,8 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         DaysAvg.put(avg, key.toString());
 
         // output best and worst AQI
-        finalOutput.put(DaysAvg.lastEntry());
-        finalOutput.put(DaysAvg.firstEntry());
+        finalOutput.put(DaysAvg.lastKey(), DaysAvg.get(DaysAvg.lastEntry()));
+        finalOutput.put(DaysAvg.firstKey(), DaysAvg.get(DaysAvg.firstEntry()));
 
     }
 
