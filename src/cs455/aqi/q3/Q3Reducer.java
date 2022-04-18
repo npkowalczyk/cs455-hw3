@@ -1,4 +1,4 @@
-package cs455.aqi.q1;
+package cs455.aqi.q3;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -14,14 +14,14 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /*
-    Receives: <Day, AQI Scores>
-    Sums up AQI scores for each key (day of week)
-    Finds mean by dividing sum by number of entries for that day
-    Returns means for days of week as <Day, mean> 
+    Receives: <CountyCode, AQI Score>
+    Sums up AQI scores for each county 
+    Finds mean by dividing sum by number of entries for that county
+    Returns means for days of week as <County, AQI mean> 
 */
 
-public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
-    private TreeMap<Long, String> DaysAvg;
+public class Q3Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
+    private TreeMap<Long, String> CountyAvg;
     private TreeMap<Long, String> finalOutput;
 
     @Override 
@@ -44,11 +44,13 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         }
         avg = sum / num;
         // add average for individual day to TreeMap
-        DaysAvg.put(avg, key.toString());
+        CountyAvg.put(avg, key.toString());
         
-        // output best and worst AQI
-        finalOutput.put(DaysAvg.lastEntry());
-        finalOutput.put(DaysAvg.firstEntry());
+        // output best 10 average AQI scores 
+        if(CountyAvg.size() > 10){
+            CountyAvg.remove(CountyAvg.firstKey());
+        }
+
 
     }
 
