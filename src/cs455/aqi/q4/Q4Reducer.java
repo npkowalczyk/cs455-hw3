@@ -44,7 +44,7 @@ public class Q4Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         // add average for individual day to TreeMap
         CountyAvg.put(avg, key.toString());
         
-        // trim map to worst 10 average AQI score
+        // trim map to worst 10 average AQI scores
         if(CountyAvg.size() > 10){
             CountyAvg.remove(CountyAvg.lastKey());
         }
