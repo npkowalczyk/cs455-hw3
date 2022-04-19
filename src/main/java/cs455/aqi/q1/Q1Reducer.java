@@ -22,16 +22,6 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 */
 
 public class Q1Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> {
-    // private TreeMap<Long, String> DaysAvg;
-    // private TreeMap<Long, String> finalOutput;
-
-    // @Override 
-    // public void setup(Context context) throws IOException, InterruptedException{
-    //     // creates data object that holds each day (key, value)
-    //     DaysAvg = new TreeMap<Long, String>();
-    //     //finalOutput = new TreeMap<Long, String>();
-    // }
-
     @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException{
         // sum of all aqi scores
@@ -44,24 +34,6 @@ public class Q1Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> 
             sum += val.get();
         }
         avg = sum / num;
-        // add average for individual day to TreeMap
-        //DaysAvg.put(avg, key.toString());
-
-
         context.write(new Text(key.toString()), new DoubleWritable(avg));
-        // output best and worst AQIf
-        //finalOutput.put(DaysAvg.lastKey(), DaysAvg.get(DaysAvg.lastEntry()));
-        //finalOutput.put(DaysAvg.firstKey(), DaysAvg.get(DaysAvg.firstEntry()));
-
     }
-
-    // @Override
-    // public void cleanup(Context context) throws IOException, InterruptedException{
-    //     // context.write
-    //     for (Map.Entry<Long, String> entry : finalOutput.entrySet()){
-    //         long avg = entry.getKey();
-    //         String day = entry.getValue();
-    //         context.write(new Text(day), new LongWritable(avg));
-    //     }
-    // }
 }
