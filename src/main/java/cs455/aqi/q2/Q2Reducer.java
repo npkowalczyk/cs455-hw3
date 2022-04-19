@@ -6,6 +6,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import java.util.TreeMap;
 import java.util.Map;
@@ -20,7 +21,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
     Returns means for month as <Month, mean> 
 */
 
-public class Q2Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
+public class Q2Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> {
     @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException{
         // sum of all aqi scores
@@ -33,6 +34,6 @@ public class Q2Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
             sum += val.get();
         }
         avg = sum / num;
-        context.write(new Text(key.toString(), new DoubleWritable(avg)));
+        context.write(new Text(key.toString()), new DoubleWritable(avg));
     }
 }

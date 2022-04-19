@@ -6,6 +6,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
@@ -30,7 +31,7 @@ public class Q2Job{
         job.setMapOutputValueClass(IntWritable.class);
         // Outputs from the Reducer
         job.setOutputKeyClass(Text.class);
-        job.setOutputKeyClass(LongWritable.class);
+        job.setOutputKeyClass(DoubleWritable.class);
         // set number of tasks
         job.setNumReduceTasks(1); 
         System.out.println(args[0]);
