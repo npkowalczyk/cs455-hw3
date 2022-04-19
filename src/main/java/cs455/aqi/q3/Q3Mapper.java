@@ -43,7 +43,10 @@ public class Q3Mapper extends Mapper<Object, Text, Text, IntWritable> {
         if(year == 2020){
             treeMap.put(aqi, countyCode);
         }
-    }
+
+        if (treeMap.size() > 10){
+            treeMap.remove(treeMap.firstKey());
+        }
 
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException {
