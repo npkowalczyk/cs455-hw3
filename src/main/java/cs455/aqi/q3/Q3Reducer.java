@@ -57,7 +57,7 @@ public class Q3Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
         for (Map.Entry<Long, String> entry : CountyAvg.entrySet()){
             long avg = entry.getKey();
             String countyCode = entry.getValue();
-            context.write(new Text(countyCode), new LongWritable(avg));
+            context.write(new Text(countyCode.toString()), new LongWritable(avg));
         }
     }
 }

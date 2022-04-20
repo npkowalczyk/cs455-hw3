@@ -25,6 +25,7 @@ public class Q3Mapper extends Mapper<Object, Text, Text, IntWritable> {
     @Override
     public void setup(Context context) throws IOException, InterruptedException{
         treeMap = new TreeMap<Integer, String>();
+        
     }
 
     @Override
@@ -54,8 +55,8 @@ public class Q3Mapper extends Mapper<Object, Text, Text, IntWritable> {
         // context write to reducer only once the mapper is done
         for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
             int aqi = entry.getKey();
-            String countyCode = entry.getValue();
-            context.write(new Text(countyCode), new IntWritable(aqi));
+            String cc = entry.getValue();
+            context.write(new Text(cc), new IntWritable(aqi));
         }
     }
 

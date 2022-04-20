@@ -32,7 +32,7 @@ public class Q3Job{
         job.setOutputKeyClass(Text.class);
         job.setOutputKeyClass(LongWritable.class);
 
-        job.setNumReduceTasks(1); 
+        //job.setNumReduceTasks(1); 
         System.out.println(args[0]);
         FileInputFormat.addInputPath(job, new Path(args[1]));
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
