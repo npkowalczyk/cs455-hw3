@@ -33,9 +33,9 @@ public class Q4Job{
         job.setOutputKeyClass(LongWritable.class);
 
         job.setNumReduceTasks(1); 
-        System.out.println(args[0]);
-        FileInputFormat.addInputPath(job, new Path(args[1]));
-        FileOutputFormat.setOutputPath(job, new Path(args[2]));
+        //System.out.println(args[0]);
+        FileInputFormat.addInputPath(job, new Path(args[0]));
+        FileOutputFormat.setOutputPath(job, new Path(args[1]));
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }      
 }
