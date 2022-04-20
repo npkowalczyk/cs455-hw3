@@ -22,7 +22,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 */
 
 public class Q2Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> {
-    
+
     @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException{
         // sum of all aqi scores
@@ -36,6 +36,5 @@ public class Q2Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> 
         }
         avg = sum / num;
         context.write(new Text(key.toString()), new DoubleWritable(avg));
-
     }
 }
