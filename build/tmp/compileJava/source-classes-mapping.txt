@@ -10,15 +10,15 @@ cs455/aqi/q2/Q2Reducer.java
  cs455.aqi.q2.Q2Reducer
 cs455/aqi/q4/Q4Job.java
  cs455.aqi.q4.Q4Job
-cs455/aqi/q3/Q3Mapper.java
- cs455.aqi.q3.Q3Mapper
+cs455/aqi/q2/Q2Mapper.java
+ cs455.aqi.q2.Q2Mapper
 cs455/aqi/q1/Q1Mapper.java
  cs455.aqi.q1.Q1Mapper
 cs455/aqi/q2/Q2Job.java
  cs455.aqi.q2.Q2Job
-cs455/aqi/q2/Q2Mapper.java
- cs455.aqi.q2.Q2Mapper
 cs455/aqi/q3/Q3Reducer.java
  cs455.aqi.q3.Q3Reducer
+cs455/aqi/q3/Q3Mapper.java
+ cs455.aqi.q3.Q3Mapper
 cs455/aqi/q3/Q3Job.java
  cs455.aqi.q3.Q3Job

@@ -21,18 +21,16 @@ public class Q3Job{
         job.setJarByClass(Q3Job.class);
         // Mapper
         job.setMapperClass(Q3Mapper.class);
-        // Combiner
-        //job.setCombinerClass(IntSumReducer.class);
         // Reducer
         job.setReducerClass(Q3Reducer.class);
         // Outputs from the Mapper
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(IntWritable.class);
         // Outputs from the Reducer
+        job.setNumReduceTasks(1); 
         job.setOutputKeyClass(Text.class);
         job.setOutputKeyClass(LongWritable.class);
 
-        //job.setNumReduceTasks(1); 
         System.out.println(args[0]);
         FileInputFormat.addInputPath(job, new Path(args[1]));
         FileOutputFormat.setOutputPath(job, new Path(args[2]));
