@@ -20,13 +20,13 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Q3Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
-    private TreeMap<Integer, String> treeMap;
+    private TreeMap<Integer, String> treeMap = new TreeMap<Integer, String>();
  
-    @Override
-    public void setup(Context context) throws IOException, InterruptedException{
-        treeMap = new TreeMap<Integer, String>();
+    // @Override
+    // public void setup(Context context) throws IOException, InterruptedException{
+    //     treeMap = new TreeMap<Integer, String>();
         
-    }
+    // }
 
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
@@ -43,10 +43,6 @@ public class Q3Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
         if(year == 2020){
             treeMap.put(aqi, countyCode);
-        }
-
-        if (treeMap.size() > 10){
-            treeMap.remove(treeMap.firstKey());
         }
     }
     
