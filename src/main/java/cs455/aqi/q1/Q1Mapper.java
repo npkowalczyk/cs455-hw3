@@ -20,13 +20,6 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
-    // private TreeMap<Integer, String> treeMap;
- 
-    // @Override
-    // public void setup(Context context) throws IOException, InterruptedException{
-    //     treeMap = new TreeMap<Integer, String>();
-    // }
-
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
         String input = value.toString();
@@ -63,17 +56,5 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
         }
 
         context.write(new Text(dayOfWeek), new IntWritable(aqi));
-        //treeMap.put(aqi, dayOfWeek);
     }
-
-    // @Override
-    // public void cleanup(Context context) throws IOException, InterruptedException {
-    //     // context write to reducer only once the mapper is done
-    //     for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
-    //         int aqi = entry.getKey();
-    //         String day = entry.getValue();
-    //         context.write(new Text(day), new IntWritable(aqi));
-    //     }
-    // }
-
 }

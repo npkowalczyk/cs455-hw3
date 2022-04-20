@@ -21,8 +21,6 @@ public class Q4Job{
         job.setJarByClass(Q4Job.class);
         // Mapper
         job.setMapperClass(Q4Mapper.class);
-        // Combiner
-        //job.setCombinerClass(IntSumReducer.class);
         // Reducer
         job.setReducerClass(Q4Reducer.class);
         // Outputs from the Mapper
