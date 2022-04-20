@@ -40,7 +40,7 @@ public class Q4Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> 
         
         // trim map to worst 10 average AQI scores
         if(CountyAvg.size() > 10){
-            CountyAvg.remove(CountyAvg.lastKey());
+            CountyAvg.remove(CountyAvg.firstKey());
         }
 
     }

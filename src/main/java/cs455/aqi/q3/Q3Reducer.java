@@ -40,7 +40,7 @@ public class Q3Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> 
         
         // trim map to best 10 average AQI scores 
         if(CountyAvg.size() > 10){
-            CountyAvg.remove(CountyAvg.firstKey());
+            CountyAvg.remove(CountyAvg.lastKey());
         }
 
     }
