@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.DoubleWritable;
 import org.apache.hadoop.io.Text;
 import java.util.TreeMap;
 import java.util.Map;
@@ -20,22 +20,16 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
     Returns means for days of week as <County, AQI mean> 
 */
 
-public class Q4Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
-    private TreeMap<Long, String> CountyAvg;
-
-    @Override 
-    public void setup(Context context) throws IOException, InterruptedException{
-        // creates data object that holds each day (key, value)
-        CountyAvg = new TreeMap<Long, String>();
-    }
+public class Q4Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> {
+    private TreeMap<Double, String> CountyAvg = new TreeMap<Double, String>();
 
     @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException{
         // sum of all aqi scores
-        long sum = 0;
+        double sum = 0;
         // keeps track of number of items for key
-        int num = 0;
-        long avg = 0;
+        double num = 0;
+        double avg = 0;
         for(IntWritable val : values){
             num += 1;
             sum += val.get();
@@ -54,10 +48,10 @@ public class Q4Reducer extends Reducer<Text, IntWritable, Text, LongWritable> {
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException{
         // context.write
-        for (Map.Entry<Long, String> entry : CountyAvg.entrySet()){
-            long avg = entry.getKey();
+        for (Map.Entry<Double, String> entry : CountyAvg.entrySet()){
+            double avg = entry.getKey();
             String countyCode = entry.getValue();
-            context.write(new Text(countyCode), new LongWritable(avg));
+            context.write(new Text(countyCode), new DoubleWritable(avg));
         }
     }
 }
