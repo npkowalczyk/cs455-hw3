@@ -20,12 +20,12 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Q2Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
-    private TreeMap<Integer, String> treeMap;
+    // private TreeMap<Integer, String> treeMap;
  
-    @Override
-    public void setup(Context context) throws IOException, InterruptedException{
-        treeMap = new TreeMap<Integer, String>();
-    }
+    // @Override
+    // public void setup(Context context) throws IOException, InterruptedException{
+    //     treeMap = new TreeMap<Integer, String>();
+    // }
 
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
@@ -76,17 +76,18 @@ public class Q2Mapper extends Mapper<Object, Text, Text, IntWritable> {
                 months = "December";
                 break;
         }
-        treeMap.put(aqi, months);
+        context.write(new Text(months), new IntWritable(aqi));
+        //treeMap.put(aqi, months);
     }
 
-    @Override
-    public void cleanup(Context context) throws IOException, InterruptedException {
-        // context write to reducer only once the mapper is done
-        for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
-            int aqi = entry.getKey();
-            String month = entry.getValue();
-            context.write(new Text(month), new IntWritable(aqi));
-        }
-    }
+    // @Override
+    // public void cleanup(Context context) throws IOException, InterruptedException {
+    //     // context write to reducer only once the mapper is done
+    //     for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
+    //         int aqi = entry.getKey();
+    //         String month = entry.getValue();
+    //         context.write(new Text(month), new IntWritable(aqi));
+    //     }
+    // }
 
 }
