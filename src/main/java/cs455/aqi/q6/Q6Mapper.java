@@ -1,4 +1,4 @@
-package cs455.aqi.q1;
+package cs455.aqi.q6;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -18,14 +18,9 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
     Returns: <Day, AQI> 
 */ 
 
-public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
+public class Q6Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
-    private TreeMap<Integer, String> treeMap;
- 
-    @Override
-    public void setup(Context context) throws IOException, InterruptedException{
-        treeMap = new TreeMap<Integer, String>();
-    }
+    private TreeMap<Integer, String> treeMap = new TreeMap<Integer, String>();
 
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
@@ -35,7 +30,7 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
         int aqi = Integer.parseInt(lineSplit[1]);
         long epoch = Long.parseLong(lineSplit[2]);
         
-        String firstThree = countryCode.substring(0, 3);
+        String firstThree = countyCode.substring(0, 3);
         String state = "";
         switch(firstThree){
             case "G06":
@@ -64,14 +59,15 @@ public class Q1Mapper extends Mapper<Object, Text, Text, IntWritable> {
                 break;
         }
         treeMap.put(aqi, state);
+    }
 
     @Override
     public void cleanup(Context context) throws IOException, InterruptedException {
         // context write to reducer only once the mapper is done
         for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
             int aqi = entry.getKey();
-            String day = entry.getValue();
-            context.write(new Text(day), new IntWritable(aqi));
+            String state = entry.getValue();
+            context.write(new Text(state), new IntWritable(aqi));
         }
     }
 

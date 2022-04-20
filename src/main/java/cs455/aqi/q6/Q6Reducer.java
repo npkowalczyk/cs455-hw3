@@ -1,4 +1,4 @@
-package cs455.aqi.q1;
+package cs455.aqi.q6;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
@@ -21,7 +21,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
     Returns means for days of week as <Day, mean> 
 */
 
-public class Q1Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> {
+public class Q6Reducer extends Reducer<Text, IntWritable, Text, DoubleWritable> {
     @Override
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException{
         // sum of all aqi scores
