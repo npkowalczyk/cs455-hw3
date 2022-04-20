@@ -20,7 +20,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 public class Q4Mapper extends Mapper<Object, Text, Text, IntWritable> {
 
-    private TreeMap<Integer, String> treeMap = new TreeMap<Integer, String>();
+    //private TreeMap<Integer, String> treeMap = new TreeMap<Integer, String>();
 
     @Override
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException{
@@ -36,19 +36,20 @@ public class Q4Mapper extends Mapper<Object, Text, Text, IntWritable> {
         int year = calendar.get(Calendar.YEAR);
 
         if(year == 2020){
-            treeMap.put(aqi, countyCode);
+            context.write(new Text(countyCode), new IntWritable(aqi));
+            //treeMap.put(aqi, countyCode);
         }
     }
 
-    @Override
-    public void cleanup(Context context) throws IOException, InterruptedException {
-        // context write to reducer only once the mapper is done
-        for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
-            int aqi = entry.getKey();
-            String countyCode = entry.getValue();
-            context.write(new Text(countyCode), new IntWritable(aqi));
-        }
-    }
+    // @Override
+    // public void cleanup(Context context) throws IOException, InterruptedException {
+    //     // context write to reducer only once the mapper is done
+    //     for (Map.Entry<Integer, String> entry : treeMap.entrySet()){
+    //         int aqi = entry.getKey();
+    //         String countyCode = entry.getValue();
+    //         context.write(new Text(countyCode), new IntWritable(aqi));
+    //     }
+    // }
 
 }
 
