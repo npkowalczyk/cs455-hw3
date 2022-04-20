@@ -13,7 +13,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 /*
-    Mapper: Read each line of CSV data
+    Mapper: Read each line of CSV datas
     Grab Epoch time and AQI score
     Returns: <Month, AQI>
 */ 
